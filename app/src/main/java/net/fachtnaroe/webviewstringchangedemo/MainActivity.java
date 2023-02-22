@@ -103,13 +103,13 @@ public class MainActivity extends Form implements HandlesEventDispatching {
     }
     public void sendButton_Clicked(){
         htmlDisplay.WebViewString( txTextBox.Text() );
-        htmlDisplay.
+//        htmlDisplay.W
         dbg("Sending: "+txTextBox.Text() );
-        dbgLabel.Text(txTextBox.Text());
+        dbgLabel.Text("Sending: "+txTextBox.Text());
     }
 
     public void htmlDisplay_StringChange(final String theString) {
-        rxTextBox.Text(theString);
+        rxTextBox.Text("got: "+theString);
         if (theString.equals("update")) {
             // https://stackoverflow.com/questions/5161951/android-only-the-original-thread-that-created-a-view-hierarchy-can-touch-its-vi
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=net.fachtnaroe.tuuber"));
