@@ -32,6 +32,7 @@ button {
 }
     </style>
     <script >
+    var busy=false;
     function sendToAndroid() {
       var msg=document.getElementById('tx').value;
       dbg("sending: "+msg);
@@ -44,7 +45,23 @@ button {
     function dbg(str) {
       document.getElementById('dbg').value=str;
     }
-    //window.fachtnaSetWebViewChange
+    window.captureEvents(Event.fachtnaWebViewStringChange);
+/*    window.onfachtnaWebViewStringChange=function() {
+      dbg('AAAAA');
+      readFromAndroid();
+    }
+    */
+    /* using a ticker/timer to poll the shared memory known as "WebViewString". Or Bob.
+        Bob to his friends. It wouldn't do to be all formal Mr WebViewString, when Bob will suffice.
+    */
+    setInterval(
+      function() {
+        if (!busy) {
+          busy=true;
+          readFromAndroid();
+          busy=false;
+        }
+      ,1000);
     </script>
   </head>
   <body>

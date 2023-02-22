@@ -81,7 +81,7 @@ public class MainActivity extends Form implements HandlesEventDispatching {
 
         EventDispatcher.registerEventForDelegation(this, formName, "Click");
         EventDispatcher.registerEventForDelegation(this, formName, "fachtnaWebViewStringChange");
-        EventDispatcher.registerEventForDelegation(this, formName, "WebViewStringChange");
+        //EventDispatcher.registerEventForDelegation(this, formName, "WebViewStringChange");
     }
 
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params) {
@@ -103,7 +103,6 @@ public class MainActivity extends Form implements HandlesEventDispatching {
     }
     public void sendButton_Clicked(){
         htmlDisplay.WebViewString( txTextBox.Text() );
-//        htmlDisplay.W
         dbg("Sending: "+txTextBox.Text() );
         dbgLabel.Text("Sending: "+txTextBox.Text());
     }
