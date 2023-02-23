@@ -103,38 +103,14 @@ public class MainActivity extends Form implements HandlesEventDispatching {
     }
     public void sendButton_Clicked(){
         htmlDisplay.WebViewString( txTextBox.Text() );
+        htmlDisplay.fachtnaRaiseEvent("WebViewStringChange");
+        htmlDisplay.fachtnaRaiseEvent("fachtnaWebViewStringChange");
         dbg("Sending: "+txTextBox.Text() );
         dbgLabel.Text("Sending: "+txTextBox.Text());
     }
 
     public void htmlDisplay_StringChange(final String theString) {
         rxTextBox.Text("got: "+theString);
-        if (theString.equals("update")) {
-            // https://stackoverflow.com/questions/5161951/android-only-the-original-thread-that-created-a-view-hierarchy-can-touch-its-vi
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=net.fachtnaroe.tuuber"));
-            startActivity(browserIntent);
-            finishActivityWithTextResult("");
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // Stuff that updates the UI
-                    //
-//                    webview_Message = new fachtnaWebViewer(MainMenu);
-//                    webview_Message.HomeUrl(
-//                            "https://play.google.com/store/apps/details?id=net.fachtnaroe.tuuber"
-//                    );
-//
-//                    webview_Message.WidthPercent(100);
-//                    webview_Message.HeightPercent(100);
-//                    webview_Message.GoHome();
-
-//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(base_url+theString));
-//                    startActivity(browserIntent);
-                }
-            });
-
-        }
-
     }
 
     public static void dbg (String debugMsg) {

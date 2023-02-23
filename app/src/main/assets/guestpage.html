@@ -39,14 +39,17 @@ button {
       window.AppInventor.fachtnaSetWebViewString(msg);
     }
     function readFromAndroid(){
+      dbg('BBB');
+      document.getElementById('rx').value="get";
       var msg =window.AppInventor.getWebViewString();
       document.getElementById('rx').value=msg;
     }
     function dbg(str) {
       document.getElementById('dbg').value=str;
     }
-    window.captureEvents(Event.fachtnaWebViewStringChange);
-/*    window.onfachtnaWebViewStringChange=function() {
+    document.addEventListener('fachtnaWebViewStringChange', readFromAndroid);
+    document.addEventListener('webViewStringChange', readFromAndroid);
+    /*    window.onfachtnaWebViewStringChange=function() {
       dbg('AAAAA');
       readFromAndroid();
     }
@@ -56,11 +59,11 @@ button {
     */
     setInterval(
       function() {
-        if (!busy) {
-          busy=true;
-          readFromAndroid();
-          busy=false;
-        }
+          if (!busy) {
+            busy=true;
+            readFromAndroid();
+            busy=false;
+          }
         }
       ,1000);
     </script>
